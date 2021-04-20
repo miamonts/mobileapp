@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:new_post/database.dart';
+import 'database.dart';
 import 'main.dart';
 import 'scorepage.dart';
 
 var finalScore = 0;
+
 var questionNumber = 0;
 MathQuiz quiz = MathQuiz();
 
@@ -51,19 +52,19 @@ class MathQuiz {
 class Math extends StatefulWidget {
   final String username;
   final String password;
-  final String finalscore;
+  final int score;
 
-  Math({this.username, this.finalscore, this.password});
+  Math({this.username, this.score, this.password});
 
   @override
-  _MathState createState() => _MathState(username, finalscore, password);
+  _MathState createState() => _MathState(username, score, password);
 }
 
 class _MathState extends State<Math> {
   final String username;
-  String finalscore;
+  int score;
   final String password;
-  _MathState(this.username, this.finalscore, this.password);
+  _MathState(this.username, this.score, this.password);
 
   @override
   void initState() {
@@ -281,7 +282,7 @@ class _MathState extends State<Math> {
           MaterialPageRoute(
               builder: (context) => Math(
                     username: username,
-                    finalscore: finalscore,
+                    score: score,
                   )));
       finalScore = 0;
       questionNumber = 0;
@@ -289,19 +290,20 @@ class _MathState extends State<Math> {
   }
 
   void nextQuestion() {
+    score = finalScore;
     setState(() {
       if (questionNumber == quiz.questions.length - 1) {
         print(username);
         print(password);
         print(finalScore);
-        signup(username, password);
+        signup(username, password, score);
         Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => TotalScore(
                       password: password,
                       username: username,
-                      finalscore: finalscore,
+                      score: score,
                     )));
       } else {
         questionNumber++;

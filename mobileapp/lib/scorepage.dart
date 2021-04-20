@@ -7,21 +7,20 @@ MathQuiz quiz = MathQuiz();
 class TotalScore extends StatefulWidget {
   final String username;
   final String password;
-  final String finalscore;
-  TotalScore({Key key, @required this.finalscore, this.username, this.password})
+  final int score;
+  TotalScore({Key key, @required this.score, this.username, this.password})
       : super(key: key);
 
   @override
-  _TotalScoreState createState() =>
-      _TotalScoreState(username, finalscore, password);
+  _TotalScoreState createState() => _TotalScoreState(username, score, password);
 }
 
 class _TotalScoreState extends State<TotalScore> {
   get totalScore => quiz.questions.length;
   final String username;
   final String password;
-  final String finalscore;
-  _TotalScoreState(this.username, this.finalscore, this.password);
+  final int score;
+  _TotalScoreState(this.username, this.score, this.password);
 
   @override
   void initState() {
@@ -69,7 +68,7 @@ class _TotalScoreState extends State<TotalScore> {
                       MaterialPageRoute(
                           builder: (context) => Math(
                                 username: username,
-                                finalscore: finalscore,
+                                score: score,
                               )));
                 },
                 child: Container(

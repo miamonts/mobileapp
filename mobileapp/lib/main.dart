@@ -137,7 +137,6 @@ class _LoginPageState extends State<LoginPage> {
                               print(password);
                               username = usernameController.text;
                               password = passwordController.text;
-                              //signup(username, password);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
